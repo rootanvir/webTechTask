@@ -1,0 +1,100 @@
+.table
+{
+    display: flex;
+    width: 100%;
+    height: 750px;
+    gap: 10px;
+    
+}
+.tabletop
+{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    gap: 10px;
+       
+}
+
+
+.col1,.col2,.col3,.c_1
+{
+    flex:1;
+    justify-content: center;
+    justify-items: center;
+    height: 100%;
+    gap: 10px;
+}
+
+.col2
+{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    justify-items: center;
+    gap: 10px;
+}
+.row1,.row2,.row3,.row4,.row5
+{
+    flex: 1;
+    gap: 10px;
+    justify-items: center;
+}
+
+.row3{
+    display: flex;
+    flex-direction: row;
+    flex:1;
+}
+.cc1,.cc2,.cc3{
+    flex:1;
+}
+.bt1,.bt11,.bt111
+{
+    flex:1;
+    height: 200px;
+
+}
+.bottom{
+    display: flex;
+    flex-direction: row;
+
+}
+.bt11{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 420px;
+
+
+}
+.bt2,.bt3
+{
+    flex:1;
+    margin-top: 10px;
+
+}
+.left,.right{
+    width: 15%;
+    background-color:blanchedalmond ;
+}
+.bt1left,.bt111right{
+    width: 15.5%;
+}
+#img_id{
+    justify-self: center;
+}
+#ob1{
+    justify-items: center;
+    padding: 10px;
+}
+.pd-5{
+    padding: 6px;
+    margin-bottom: 3px;
+    width: 95%;
+    border: none;
+}
+.pd-5:hover{
+    background-color: rgb(234, 223, 255) ;
+   
+}
