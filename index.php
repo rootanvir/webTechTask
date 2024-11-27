@@ -72,10 +72,16 @@
                         <label for="curtime">Borrowing Time :</label><br>
                         <input class="pd-5" name="curtime" type="date" ><br>
 
-
+                        
+                        
                         <label for="token">Token Number</label><br>
-                        <input name="token" class="pd-5" type="text" placeholder="TOKEN_NUMER">
-
+                        <?php
+                            $token = rand(1000000,9999999);
+                        
+                        echo "<input name=\"token\" class=\"pd-5\" type=\"text\" placeholder=\"TOKEN_NUMER\" value=$token>";
+                    
+                        ?>
+                   
                         <br>
                         <label for="returndate">Return Date</label><br>
                         <input class="pd-5" name="returndate" type="date">
