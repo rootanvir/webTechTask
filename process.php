@@ -28,7 +28,11 @@ try {
         }
 
         $returnDate = htmlspecialchars($_POST["returndate"]);
-        $time = htmlspecialchars($_POST["curtime"]);
+        $time = htmlspecialchars($_POST["curtime"]);   
+        
+        if($returnDate < $time){
+            $check = false;
+        }
 
         $bookname = htmlspecialchars($_POST["science_books"]);
         $token = htmlspecialchars($_POST["token"]);
@@ -81,6 +85,7 @@ try {
                 echo "<p> Borrowing Date :$time </p> ";
                 echo "<p> Return Date : $returnDate </p>";
                 echo "<p> token number : $token </p>";
+                echo "<button style=\"margin-top:100px;margin-left:300px\"onclick=\"window.print()\">Print Receipt</button>";
                 ?>
             </div>
         </div>

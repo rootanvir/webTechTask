@@ -20,7 +20,7 @@
             </div>
             <div class="col2">
                 <div style="background-color: rgb(241, 188, 144);" class="row1">
-                    <h1>Book Borrowing System</h1>
+                    <p style="font-size:50px;font-weight:bold:font-family:Sans-Serif;">Book Borrowing System </p>
                 </div>
                 <div style="background-color: rgb(209, 172, 243);" class="row2"></div>
                 <div class="row3">

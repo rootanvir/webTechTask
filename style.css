@@ -98,3 +98,7 @@
     background-color: rgb(234, 223, 255) ;
    
 }
+#book_title {
+    color: red;
+    font-size: 24px;
+}
