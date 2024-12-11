@@ -69,38 +69,46 @@
                         </select>
 
                         <br>
-                        <label for="curtime">Borrowing Time :</label><br>
-                        <input class="pd-5" name="curtime" type="date" ><br>
+                        <label for="curtime">Borrow Date</label><br>
+                        <input class="pd-5" name="curtime" type="date"><br>
 
-                        
-                        
+
+
                         <label for="token">Token Number</label><br>
                         <?php
-                            $token = rand(1000000,9999999);
+                        //$token = rand(1000000,9999999);
                         
-                        echo "<input name=\"token\" class=\"pd-5\" type=\"text\" placeholder=\"TOKEN_NUMER\" value=$token>";
-                    
+                        echo "<input name=\"token\" class=\"pd-5\" type=\"text\" placeholder=\"TOKEN_NUMER\" >";
+
                         ?>
-                   
+
                         <br>
                         <label for="returndate">Return Date</label><br>
                         <input class="pd-5" name="returndate" type="date">
                         <br><br>
-                        <input class="pd-5" style="background-color:darksalmon" type="submit" name="submit" value="submit">
+                        <input class="pd-5" style="background-color:darksalmon" type="submit" name="submit"
+                            value="submit">
                     </form>
 
-
-
-
-
-
-
-
-
-
                 </div>
-                <div id="ob2" style="background-color: rgb(165, 93, 42);" class="bt3">
+                <div id="ob2" style="background-color: burlywood;" class="bt3">
+                    <div id="intoken" style="text-align: center; margin: 0 auto; width: 50%; padding: 10px;">
+                        <h1>TOKENS</h1>
+                        <?php
+                        $filePath = "resource/token.json";
+                        $read = file_get_contents($filePath);
+                        $arr = json_decode($read, true);
+                        $array = $arr[0]['token'];
+
+                        for ($i = 0; $i < sizeof($array); $i++) {
+                            echo "<table style='border: 1px solid black; margin: 5px auto;'>";
+                            echo "<tr><td style='width : 150px; text-align:center '>" . $array[$i] . "</td></tr>";
+                            echo "</table>";
+                        }
+                        ?>
+                    </div>
                 </div>
+
             </div>
             <div class="bt111right"></div>
         </div>

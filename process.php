@@ -6,58 +6,71 @@ try {
 
     $check = true;
     if (isset($_POST["submit"])) {
-        // Validate username (only letters and spaces allowed)
         if (preg_match("/^[A-Za-z .]+$/", $_POST["username"]) && $check) {
-            $user_name = htmlspecialchars($_POST["username"]); // Sanitize input
+            $user_name = htmlspecialchars($_POST["username"]);
         } else {
             $check = false;
         }
 
-        // Validate user ID (format: XX-XXXXX-X)
         if (preg_match("/^\d{2}-\d{5}-\d{1}$/", $_POST["userid"]) && $check) {
-            $user_id = htmlspecialchars($_POST["userid"]); // Sanitize input
+            $user_id = htmlspecialchars($_POST["userid"]);
         } else {
             $check = false;
         }
 
-        // Validate email (AIUB email format)
         if (preg_match("/^\d{2}-\d{5}-\d{1}@student\.aiub\.edu$/", $_POST["useremail"]) && $check) {
-            $user_email = htmlspecialchars($_POST["useremail"]); // Sanitize input
+            $user_email = htmlspecialchars($_POST["useremail"]);
         } else {
             $check = false;
         }
 
         $returnDate = htmlspecialchars($_POST["returndate"]);
-        $time = htmlspecialchars($_POST["curtime"]);   
-        
-        if($returnDate < $time){
+        $time = htmlspecialchars($_POST["curtime"]);
+
+        // if ($returnDate > $time) {
+        // } else {
+        //     $check = false;
+        // }
+
+        $returnTimestamp = strtotime($returnDate);
+        $currentTimestamp = strtotime($time);
+
+        if (($returnTimestamp - $currentTimestamp) >= 10 * 24 * 60 * 60) {
+        } else {
             $check = false;
         }
+
 
         $bookname = htmlspecialchars($_POST["science_books"]);
         $token = htmlspecialchars($_POST["token"]);
 
-        
+        $filePath = "resource/token.json";
+        $read = file_get_contents($filePath);
+        $arr = json_decode($read, true);
+        $array = $arr[0]['token'];
+        if (in_array($token, $array)) {
+        } else {
+            $check = false;
+        }
+
+
 
         if (isset($_POST["submit"]) && $check) {
             if (!isset($_COOKIE[$bookname])) {
-                // here: Output data securely
-                setcookie($bookname, $user_name, time() + 5); // Set a cookie for the book
-
-                // over
+                setcookie($bookname, $user_name, time() + 10);
             } else {
-                // Display message if the book is already borrowed
                 echo "<h1>This book is Not available right now. 
                 You can borrow it after <span style='color:red;'>$returnDate</span>.</h1>";
                 return;
             }
         } else {
             throw new Exception("Invalid Data Format");
-
+            
         }
     }
 } catch (Exception $e) {
     echo "<h1 style=color:red> ", $e->getMessage(), "</h1>";
+    header("Refresh: 2; url=index.php");
     return;
 }
 ?>
@@ -72,7 +85,7 @@ try {
     <link rel="stylesheet" href="resource/style2.css">
 </head>
 
-<body>
+<body style="background-color:darkgray">
     <div class="full">
 
         <div class="recpt">
