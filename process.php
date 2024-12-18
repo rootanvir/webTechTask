@@ -39,16 +39,36 @@ try {
         } else {
             $check = false;
         }
-
-
         $bookname = htmlspecialchars($_POST["science_books"]);
+
+        $usedFilePath = "resource/used.json";
+        $filePath = "resource/token.json";
+
         $token = htmlspecialchars($_POST["token"]);
 
-        $filePath = "resource/token.json";
-        $read = file_get_contents($filePath);
-        $arr = json_decode($read, true);
-        $array = $arr[0]['token'];
-        if (in_array($token, $array)) {
+        if (file_exists($filePath)) {
+            $read = file_get_contents($filePath);
+            $arr = json_decode($read, true);
+            $array = $arr[0]['token'];
+        } else {
+            die("Token file not found.");
+        }
+
+        $usedTokens = [];
+        if (file_exists($usedFilePath)) {
+            $usedRead = file_get_contents($usedFilePath);
+            $usedTokens = json_decode($usedRead, true) ?? [];
+
+            if (in_array($token, $usedTokens)) {
+                $check = false;
+            }
+        }
+
+        if (in_array($token, $array) && $check) {
+            if (!in_array($token, $usedTokens)) {
+                $usedTokens[] = $token;
+                file_put_contents($usedFilePath, json_encode($usedTokens, JSON_PRETTY_PRINT));
+            }
         } else {
             $check = false;
         }
@@ -65,14 +85,17 @@ try {
             }
         } else {
             throw new Exception("Invalid Data Format");
-            
+
         }
     }
 } catch (Exception $e) {
     echo "<h1 style=color:red> ", $e->getMessage(), "</h1>";
-    header("Refresh: 2; url=index.php");
+    //header("Refresh: 2; url=index.php");
     return;
 }
+
+
+
 ?>
 
 <!DOCTYPE html>

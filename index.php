@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="resource/style.css">
 
 </head>
 
@@ -20,7 +20,7 @@
             </div>
             <div class="col2">
                 <div style="background-color: rgb(241, 188, 144);" class="row1">
-                    <p style="font-size:50px;font-weight:bold:font-family:Sans-Serif;">Book Borrowing System </p>
+                    <p style="font-size:50px;font-weight:bold;font-family:Sans-Serif">Book Borrowing System </p>
                 </div>
                 <div style="background-color: rgb(209, 172, 243);" class="row2"></div>
                 <div class="row3">
@@ -56,7 +56,7 @@
                         <label for="science_books">Title of the book</label><br>
                         <select class="pd-5" style="height : 30px;" name="science_books" id="science_books">
                             <option value="" disabled selected>Title of the book</option>
-                            <option value="a_brief_history_of_time">A Brief History of Time</option>
+                            <option value="a_brief_history_of_time">A Brief History of Time</option>   
                             <option value="the_selfish_gene">The Selfish Gene</option>
                             <option value="cosmos">Cosmos</option>
                             <option value="the_elegant_universe">The Elegant Universe</option>
@@ -91,9 +91,9 @@
                     </form>
 
                 </div>
-                <div id="ob2" style="background-color: burlywood;" class="bt3">
-                    <div id="intoken" style="text-align: center; margin: 0 auto; width: 50%; padding: 10px;">
-                        <h1>TOKENS</h1>
+                <div id="ob2" style="background-color:khaki " class="bt3">
+                    <div  style="text-align: center; margin: 0 auto; width: 50%; padding: 10px;">
+                        <div> <h1>TOKENS</h1> </div>
                         <?php
                         $filePath = "resource/token.json";
                         $read = file_get_contents($filePath);
