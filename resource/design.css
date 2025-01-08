@@ -34,7 +34,7 @@
     justify-items: center;
     gap: 10px;
 }
-.row1,.row2,.row3,.row4,.row5
+.row1,.row2,.row3,.row5
 {
     flex: 1;
     gap: 10px;
@@ -46,6 +46,7 @@
     flex-direction: row;
     flex:1;
 }
+
 .cc1,.cc2,.cc3{
     flex:1;
 }
@@ -100,4 +101,13 @@
 }
 #intoken{
     background-color:lightslategray;
+}
+#book{
+    display :flex;
+    flex-direction:column;
+    margin-inline:20%;
+    max-width: 300px;
+}
+#book input{
+    padding: 3px;
 }
