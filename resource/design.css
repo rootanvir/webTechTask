@@ -67,7 +67,6 @@
     gap: 10px;
     height: 420px;
 
-
 }
 .bt2,.bt3
 {
@@ -86,13 +85,16 @@
     justify-self: center;
 }
 #ob1{
-    justify-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: bisque;
     padding: 10px;
+    width: 100%;
 }
 .pd-5{
     padding: 6px;
     margin-bottom: 3px;
-    width: 95%;
+    width: 100%;
     border: none;
 }
 .pd-5:hover{

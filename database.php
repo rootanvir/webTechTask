@@ -14,7 +14,10 @@ if ($conn->connect_error) {
     $author = $_POST['authorName'];
     $quantity = (int) $_POST['quantity'];
     $fic = $_POST['isFictional'];
-
+    if (!isset($isbn) || !isset($book) || !isset($author) || !isset($quantity) || !isset($fic)) {
+        die("Invalid data format");
+    }
+    
     $sql = "INSERT INTO book_borrowing_system (isbn, book_title, author_name, quantity, is_fiction) 
             VALUES ('$isbn', '$book', '$author', $quantity, '$fic')";
 
