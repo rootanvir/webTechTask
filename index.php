@@ -20,57 +20,87 @@
         <div class="table">
 
             <div class="left">
-            </div>
-            <div class="col2">
-                <div style="background-color: rgb(241, 188, 144);" class="row1">
+                <div class="data-container" id="jsonDataContainer">
                     <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "test";
+                    // Load JSON file
+                    $jsonFile = 'resource/used.json'; // Path to your JSON file
+                    
+                    // Check if the file exists
+                    if (file_exists($jsonFile)) {
+                        // Read and decode the JSON data
+                        $jsonData = file_get_contents($jsonFile);
+                        $data = json_decode($jsonData, true);
 
-                    // Establish the connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    } else {
-                        // Query to fetch books
-                        $sql = "SELECT isbn, book_title, author_name, quantity, is_fiction FROM book_borrowing_system";
-                        $result = $conn->query($sql);
-
-                        if ($result->num_rows > 0) {
-                            echo "<h1 style='text-align: center;'>Book List</h1>";
-                            echo "<div style='max-height: 400px; overflow-y: scroll; border: 1px solid #ddd; width: 80%; margin: auto;'>";
-                            echo "<table border='1' style='border-collapse: collapse; width: 100%;'>";
-                            echo "<tr style='background-color: #f2f2f2;'>";
-                            echo "<th>ISBN</th>";
-                            echo "<th>Title</th>";
-                            echo "<th>Author</th>";
-                            echo "<th>Quantity</th>";
-                            echo "<th>Fiction</th>";
-                            echo "</tr>";
-
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($row['isbn']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['book_title']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['author_name']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['is_fiction']) . "</td>";
-                                echo "</tr>";
+                        if ($data) {
+                            // Output the data as a scrollable list
+                            echo '<div>';
+                            echo '<ul>';
+                            foreach ($data as $item) {
+                                echo '<li>' . htmlspecialchars($item) . '</li>';
                             }
-
-                            echo "</table>";
-                            echo "</div>";
+                            echo '</ul>';
+                            echo '</div>';
                         } else {
-                            echo "No books found in the database.";
+                            echo 'Invalid JSON data.';
                         }
-
-                        $conn->close();
+                    } else {
+                        echo 'JSON file not found.';
                     }
                     ?>
 
+                </div>
+            </div>
+            <div class="col2">
+                <div style="background-color: rgb(221, 151, 93);" class="row1">
+                    <div class="row11">
+                        <?php
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "test";
+
+                        // Establish the connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        } else {
+                            // Query to fetch books
+                            $sql = "SELECT isbn, book_title, author_name, quantity, is_fiction FROM book_borrowing_system";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                echo "";
+                                echo "<div style='max-height: 400px; overflow-y: auto; border: 1px solid #ddd; width: 80%; margin: auto;'>";
+                                echo "<table border='1' style='border-collapse: collapse; width: 100%; text-align: left;'>";
+                                echo "<tr style='background-color: #f2f2f2;'>";
+                                echo "<th>ISBN</th>";
+                                echo "<th>Title</th>";
+                                echo "<th>Author</th>";
+                                echo "<th>Quantity</th>";
+                                echo "<th>Fiction</th>";
+                                echo "</tr>";
+
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . htmlspecialchars($row['isbn']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['book_title']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['author_name']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['is_fiction']) . "</td>";
+                                    echo "</tr>";
+                                }
+
+                                echo "</table>";
+                                echo "</div>";
+                            } else {
+                                echo "<p style='text-align: center;'>No books found in the database.</p>";
+                            }
+
+                            $conn->close();
+                        }
+                        ?>
+                    </div>
 
                 </div>
                 <div style="background-color: rgb(209, 172, 243);" class="row2">
