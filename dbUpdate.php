@@ -19,15 +19,23 @@ $authorName = $_POST['authorName'];
 $quantity = $_POST['quantity'];
 $isFictional = $_POST['isFictional'];
 
-// Update the record in the database using ISBN
-$sql = "UPDATE book_borrowing_system 
-        SET book_title = '$bookName', author_name = '$authorName', quantity = $quantity, is_fiction = '$isFictional' 
-        WHERE isbn = '$isbn'";
+// Check if the book exists
+$sql_check = "SELECT * FROM book_borrowing_system WHERE isbn = '$isbn'";
+$result = $conn->query($sql_check);
 
-if ($conn->query($sql) === TRUE) {
-    echo "Record updated successfully";
+if ($result->num_rows == 0) {
+    die("Error: Book with ISBN '$isbn' does not exist.");
 } else {
-    echo "Error updating record: " . $conn->error;
+    // Update the record in the database using ISBN
+    $sql = "UPDATE book_borrowing_system 
+            SET book_title = '$bookName', author_name = '$authorName', quantity = $quantity, is_fiction = '$isFictional' 
+            WHERE isbn = '$isbn'";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Record updated successfully";
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
 }
 
 // Close the connection

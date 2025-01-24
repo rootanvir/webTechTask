@@ -71,7 +71,7 @@
 
                             if ($result->num_rows > 0) {
                                 echo "";
-                                echo "<div style='max-height: 400px; overflow-y: auto; border: 1px solid #ddd; width: 80%; margin: auto;'>";
+                                echo "<div style='max-height: 400px; overflow-y: auto; border: 1px solid #ddd; width: 98%; margin: auto;'>";
                                 echo "<table border='1' style='border-collapse: collapse; width: 100%; text-align: left;'>";
                                 echo "<tr style='background-color: #f2f2f2;'>";
                                 echo "<th>ISBN</th>";
